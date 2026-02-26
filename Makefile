@@ -1,4 +1,5 @@
 BIN_FILE=iptables-server
+VERSION=1.1.4
 
 SRCS=./
 
@@ -24,7 +25,7 @@ run:
 	go run main.go
 
 images:
-	docker build -t nbk1982/iptables-web:1.1.2 -t nbk1982/iptables-web:latest .
+	docker build -t nbk1982/iptables-web:$(VERSION) -t nbk1982/iptables-web:latest .
 # 	docker push
 
 clean:
