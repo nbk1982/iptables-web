@@ -1,5 +1,5 @@
 BIN_FILE=iptables-server
-VERSION=1.1.4
+VERSION=1.1.5
 GO_VERSION=$(shell awk '/^go / {print $$2}' go.mod)
 
 SRCS=./

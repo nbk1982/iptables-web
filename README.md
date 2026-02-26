@@ -76,8 +76,8 @@ GitHub release artifacts are produced by `.github/workflows/release.yml` when yo
 Create a release tag:
 
 ```bash
-git tag v1.1.4
-git push origin v1.1.4
+git tag v1.1.5
+git push origin v1.1.5
 ```
 
 Published assets include:
@@ -90,7 +90,7 @@ Published assets include:
 Verify downloads:
 
 ```bash
-sha256sum -c checksums-v1.1.4.txt
+sha256sum -c checksums-v1.1.5.txt
 ```
 
 ## Configuration
