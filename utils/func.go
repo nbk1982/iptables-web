@@ -180,13 +180,13 @@ func JsonToMap(jsonStr string) (map[string]string, error) {
 }
 
 func GetInterfaceString(param interface{}) string {
-	switch param.(type) {
+	switch param := param.(type) {
 	case string:
-		return param.(string)
+		return param
 	case int:
-		return strconv.Itoa(param.(int))
+		return strconv.Itoa(param)
 	case float64:
-		return strconv.Itoa(int(param.(float64)))
+		return strconv.Itoa(int(param))
 	}
 	return ""
 }
