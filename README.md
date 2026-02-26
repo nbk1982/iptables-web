@@ -1,5 +1,5 @@
 # iptables Web Management
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/nbk1982/iptables-web)](https://github.com/nbk1982/iptables-web/blob/master/go.mod)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/nbk1982/iptables-web)](https://github.com/nbk1982/iptables-web/blob/master/go.mod) [![Build Release](https://github.com/nbk1982/iptables-web/actions/workflows/release.yml/badge.svg)](https://github.com/nbk1982/iptables-web/actions/workflows/release.yml)
 
 ### iptables-web is a lightweight management console for both `iptables` and `ip6tables`. It bundles a UI, REST API, and utilities into a single binary that fits daily operations as well as learning scenarios.
 
