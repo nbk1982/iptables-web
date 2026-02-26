@@ -131,7 +131,7 @@ func GoWithRecover(handler func(), recoverHandler func(r interface{})) {
 					go func() {
 						defer func() {
 							if p := recover(); p != nil {
-								log.Println("recover goroutine panic:%v\n%s\n", p, string(debug.Stack()))
+								log.Printf("recover goroutine panic:%v\n%s\n", p, string(debug.Stack()))
 							}
 						}()
 						recoverHandler(r)
@@ -153,7 +153,7 @@ func JsonEncode(param interface{}) []byte {
 	if err != nil {
 		pc, f, l, _ := runtime.Caller(1)
 		fc := runtime.FuncForPC(pc)
-		log.Printf("json_encode err: file:%s, line:%s, function name:%s, err:%s", f, l, fc.Name(), err.Error())
+		log.Printf("json_encode err: file:%s, line:%d, function name:%s, err:%s", f, l, fc.Name(), err.Error())
 		return []byte{}
 	}
 	return b
@@ -180,13 +180,13 @@ func JsonToMap(jsonStr string) (map[string]string, error) {
 }
 
 func GetInterfaceString(param interface{}) string {
-	switch param.(type) {
+	switch param := param.(type) {
 	case string:
-		return param.(string)
+		return param
 	case int:
-		return strconv.Itoa(param.(int))
+		return strconv.Itoa(param)
 	case float64:
-		return strconv.Itoa(int(param.(float64)))
+		return strconv.Itoa(int(param))
 	}
 	return ""
 }

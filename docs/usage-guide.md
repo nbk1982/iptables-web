@@ -31,13 +31,13 @@ docker run -d \
   -e IPT_WEB_PASSWORD=admin \
   -e IPT_WEB_ADDRESS=:10001 \
   -p 10001:10001 \
-  pretty66/iptables-web:latest
+  nbk1982/iptables-web:latest
 ```
 
 ### Binary
 
 ```bash
-git clone https://github.com/pretty66/iptables-web.git
+git clone https://github.com/nbk1982/iptables-web.git
 cd iptables-web
 make release
 ./iptables-server -a :10001 -u admin -p admin
