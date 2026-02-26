@@ -106,7 +106,7 @@
   <body>
     <ul class="layui-nav layui-bg-blue" style="text-align: center">
       <li class="layui-nav-item">
-        <span class="ipc-title">iptables 管理平台</span>
+        <span class="ipc-title">iptables Web Console</span>
         <span class="ipc-version"></span>
       </li>
     </ul>
@@ -136,7 +136,7 @@
         <div id="table-body"></div>
       </div>
     </div>
-    <!--目录-->
+    <!-- Directory -->
     <div id="nav-dir-hide">
       <i
         class="layui-icon layui-icon-triangle-r"
@@ -159,7 +159,7 @@
       "
     >
       <div class="layui-layer-title" id="dir-title" style="cursor: move">
-        目录
+        Directory
       </div>
       <div style="padding: 10px">
         <ul
@@ -171,89 +171,89 @@
       <span class="layui-layer-setwin"></span
       ><span class="layui-layer-resize"></span>
     </div>
-    <!--功能按钮-->
+    <!-- Action buttons -->
     <div id="global-func" class="global-func">
       <button
         id="clear-all-rule"
         class="layui-btn layui-btn-primary layui-btn-sm layui-btn-radius"
       >
-        清空所有表规则
+        Flush All Tables
       </button>
       <br />
       <button
         id="clear-current-table-rule"
         class="layui-btn layui-btn-primary layui-btn-sm layui-btn-radius"
       >
-        清空当前表规则
+        Flush Current Table
       </button>
       <br />
       <button
         id="clear-all-empty-chain"
         class="layui-btn layui-btn-primary layui-btn-sm layui-btn-radius"
       >
-        清空自定义空链
+        Drop Empty Custom Chains
       </button>
       <br />
       <button
         id="clear-all-metrics"
         class="layui-btn layui-btn-primary layui-btn-sm layui-btn-radius"
       >
-        清零所有表计数
+        Zero All Counters
       </button>
       <br />
       <button
         id="clear-current-table-metrics"
         class="layui-btn layui-btn-primary layui-btn-sm layui-btn-radius"
       >
-        清零当前表计数
+        Zero Current Table
       </button>
       <br />
       <button
         id="self-iptables"
         class="layui-btn layui-btn-primary layui-btn-sm layui-btn-radius"
       >
-        查看当前表规则
+        View Current Table
       </button>
       <br />
       <button
         id="exec-iptables"
         class="layui-btn layui-btn-primary layui-btn-sm layui-btn-radius"
       >
-        执行iptables命令
+        Run iptables Command
       </button>
       <br />
       <button
         id="export-all-rule"
         class="layui-btn layui-btn-primary layui-btn-sm layui-btn-radius"
       >
-        导出iptables规则
+        Export iptables Rules
       </button>
       <br />
       <button
         id="import-all-rule"
         class="layui-btn layui-btn-primary layui-btn-sm layui-btn-radius"
       >
-        导入iptables规则
+        Import iptables Rules
       </button>
       <br />
       <button
         id="open-iptables-doc"
         class="layui-btn layui-btn-primary layui-btn-sm layui-btn-radius"
       >
-        iptables命令文档
+        iptables Reference
       </button>
       <!--    <br>-->
       <!--    <a href="https://blog.xujianqq.com.cn/archives/61" target="_blank"-->
-      <!--       class="layui-btn layui-btn-primary layui-btn-sm layui-btn-radius">iptables帮助文档</a>-->
+      <!--       class="layui-btn layui-btn-primary layui-btn-sm layui-btn-radius">iptables help docs</a>-->
     </div>
-    <!--复制、导出-->
+    <!-- Copy and export -->
     <div class="modal-footer" style="display: none">
       <a
         onfocus="this.blur();"
         id="createInvoteBtn"
         class="ipt-todo"
         href="javascript:void(0)"
-        >生成并导出Txt文件</a
+        >Generate and export TXT file</a
       >
       <a
         onfocus="this.blur();"
@@ -265,87 +265,14 @@
     </div>
     <textarea id="copy" style="display: none"></textarea>
     <script src="/web/layui/layui.js"></script>
-    <!--您的Layui代码start-->
+    <!-- Layui code start -->
     <script type="text/javascript">
       let currentProtocol = "ipv4";
       const languageKey = "iptables_lang";
       const storedLang = localStorage.getItem(languageKey);
-      const browserLang = (navigator.language || "zh")
-        .toLowerCase()
-        .startsWith("zh")
-        ? "zh"
-        : "en";
-      let currentLang = storedLang || browserLang;
+      const browserLang = "en";
+      let currentLang = "en";
       const i18n = {
-        zh: {
-          title: "iptables 管理平台",
-          directoryTitle: "目录",
-          chainLabel: "链",
-          defaultPolicy: "默认策略",
-          packets: "经过的包数量",
-          bytes: "字节数",
-          references: "被引用数量",
-          tableLabel: "表",
-          tableWord: "表",
-          chainWord: "链",
-          clearAllRule: "清空所有表规则",
-          clearCurrentRule: "清空当前表规则",
-          clearEmptyChain: "清空自定义空链",
-          clearAllMetrics: "清零所有表计数",
-          clearCurrentMetrics: "清零当前表计数",
-          clearChain: "清空规则",
-          viewTable: "查看当前表规则",
-          execCmd: "执行iptables命令",
-          exportRule: "导出iptables规则",
-          importRule: "导入iptables规则",
-          doc: "iptables命令文档",
-          protocolLabel: "协议",
-          tabRaw: "raw",
-          tabMangle: "mangle",
-          tabNat: "nat",
-          tabFilter: "filter",
-          nativeChain: "原生链",
-          customChain: "自定义链",
-          insert: "插入",
-          append: "添加",
-          zero: "清零",
-          zeroCounters: "清零计数",
-          delete: "删除",
-          refresh: "刷新",
-          refreshSuccess: "刷新成功",
-          viewCmd: "查看命令",
-          warning: "提示",
-          confirm: "确认",
-          cancel: "取消",
-          insertRuleTitle: "插入规则",
-          appendRuleTitle: "添加规则",
-          rulePlaceholder: "请输入规则",
-          execCommandTitleTpl: "执行 {cmd} 命令",
-          inputCommand: "输入命令",
-          commandSuccess: "命令执行成功",
-          importPromptTpl: "粘贴 {cmd} 规则",
-          importSuccess: "导入iptables规则成功！",
-          flushRuleSuccess: "清除规则成功！",
-          flushMetricsSuccess: "清除统计数据成功！",
-          clearEmptySuccess: "清空自定义空链成功！",
-          insertSuccess: "插入规则成功！",
-          appendSuccess: "添加规则成功！",
-          updateSuccess: "修改规则成功！",
-          copySuccess: "复制成功，可直接粘贴至文件！",
-          exportDialogTitle: "全部规则命令",
-          btnCopy: "复制",
-          btnDownload: "导出",
-          btnOk: "确定",
-          clearConfirmPrefix: "确认清除",
-          allRulesSuffix: "所有规则？",
-          chainRulesSuffix: " 链的所有规则？",
-          allMetricsSuffix: "所有统计数据？",
-          ruleMetricsPrefix: "第 ",
-          ruleMetricsSuffix: " 条规则的统计数据？",
-          ruleNumberPrefix: "第",
-          ruleNumberSuffix: "条规则",
-          clearEmptyPrompt: "确认清除用户自定义的所有空链？",
-        },
         en: {
           title: "iptables Web Console",
           directoryTitle: "Directory",
@@ -447,8 +374,7 @@
         const tabs = document.querySelectorAll(".iptables-table li");
         const tabKeys = ["tabRaw", "tabMangle", "tabNat", "tabFilter"];
         tabs.forEach((tab, idx) => (tab.innerText = langPack[tabKeys[idx]]));
-        document.querySelector("#language-toggle").innerText =
-          lang === "zh" ? "English" : "中文";
+        document.querySelector("#language-toggle").innerText = "English";
         if (!options.silent && typeof loadListRule === "function") {
           loadListRule(currentTableName(), "", false);
         }
@@ -466,9 +392,9 @@
       }
 
       layui.use(["layer", "table", "element", "code"], function () {
-        var layer = layui.layer, //弹层
-          table = layui.table, //表格
-          element = layui.element; //元素操作 等等...
+        var layer = layui.layer, // Layer popup
+          table = layui.table, // Table
+          element = layui.element; // Element operations
         window.$ = layui.$;
         $.get("/version", function (res) {
           $(".ipc-version").html(res.data);
@@ -479,14 +405,14 @@
         });
         let dirObj = $("#nav-dir");
         let dirHideObj = $("#nav-dir-hide");
-        // 右侧
+        // Right side
         let globalObj = $("#global-func");
         setLanguage(currentLang, { silent: true });
         function navDirStatus(display) {
           dirObj.css("display", display);
           dirHideObj.css("display", { none: "block", block: "none" }[display]);
           if (display === "none") {
-            // 增加绑定事件
+            // Add event bindings
             dirHideObj.hover(function () {
               dirObj.css("display", "block");
             });
@@ -501,7 +427,7 @@
             });
             globalObj.css("right", "-120px");
           } else {
-            // 清除绑定的事件
+            // Remove bound events
             dirObj.unbind("mouseleave");
             dirHideObj.unbind("hover");
             globalObj.unbind("hover");
@@ -521,7 +447,7 @@
           isHide = false;
         }
         $(window).resize(function () {
-          //执行代码块
+          // Run resize handling logic
           // let globalFunc = $('#global-func');
           if ($(document.body).width() < 1500) {
             if (!isHide) {
@@ -622,10 +548,7 @@
           },
           deleteRule: (table, chain, id, done) => {
             const lang = i18n[currentLang];
-            const msg =
-              currentLang === "zh"
-                ? `确认清除 ${table} 表 ${chain} 链的第 ${id} 条规则？`
-                : `Confirm to clear ${table} table ${chain} chain rule #${id}?`;
+            const msg = `Confirm to clear ${table} table ${chain} chain rule #${id}?`;
             layer.confirm(msg, function () {
               $.post(
                 "/deleteRule",
@@ -763,7 +686,7 @@
               layer.alert(res.msg);
               return false;
             }
-            // 全量拉取
+            // Full refresh
             if (!chainName) {
               let bodyObj = $("#table-body");
               bodyObj.html("");
@@ -786,11 +709,11 @@
                   bodyObj.append(html);
                 }
               }
-              // 设置目录
+              // Update directory
               $("#dir-list").html(dirHTML(res.data));
               return true;
             }
-            // 局部刷新
+            // Partial refresh
             let bodyObj = $("#" + chainName);
             let type = bodyObj.data("type");
             bodyObj.html("");
@@ -807,13 +730,13 @@
         let tableName = currentTableName();
         loadListRule(tableName);
 
-        //监听Tab切换，以改变地址hash值
+        // Listen for tab switching
         element.on("tab(tablename)", function () {
           let tableName = this.getAttribute("id");
           loadListRule(tableName);
         });
 
-        // 刷新链
+        // Refresh chain
         $(document).on("click", ".chain-reload", function () {
           let tableName = $(this).parent().data("table");
           let chainName = $(this).parent().data("chain");
@@ -860,7 +783,7 @@
           );
         });
 
-        // 清空指定表的链规则
+        // Flush rules in specified chain
         $(document).on("click", ".chain-flush", function () {
           let tableName = $(this).parent().data("table");
           let chainName = $(this).parent().data("chain");
@@ -868,7 +791,7 @@
             loadListRule(tableName, chainName, false);
           });
         });
-        // 清空指定表的链统计数据
+        // Zero counters in specified chain
         $(document).on("click", ".chain-flush-metrics", function () {
           let tableName = $(this).parent().data("table");
           let chainName = $(this).parent().data("chain");
@@ -884,7 +807,7 @@
             loadListRule(tableName, chainName, false);
           });
         });
-        // 查看原始命令
+        // View raw command
         $(document).on("click", ".chain-exec", function () {
           let tableName = $(this).parent().data("table");
           let chainName = $(this).parent().data("chain");
@@ -897,7 +820,7 @@
             });
           });
         });
-        // 单击修改规则
+        // Click to edit rule
         $(document).on("click", "tbody>tr>td:first-child", function () {
           let obj = $(this).parent().find("td:last-child button");
           let tableName = obj.data("table");
@@ -908,20 +831,12 @@
             info = info.replace(chainName, chainName + " " + id + " ");
             const lang = i18n[currentLang];
             const editTitle =
-              currentLang === "zh"
-                ? "修改 " +
-                  tableName +
-                  "表, " +
-                  chainName +
-                  "链, 第" +
-                  id +
-                  "条规则"
-                : "Edit " +
-                  tableName +
-                  " table, " +
-                  chainName +
-                  " chain, rule #" +
-                  id;
+              "Edit " +
+              tableName +
+              " table, " +
+              chainName +
+              " chain, rule #" +
+              id;
             execView(
               editTitle,
               "iptables -t " + tableName,
@@ -936,7 +851,7 @@
             );
           });
         });
-        // 清除单条规则
+        // Delete single rule
         $(document).on("click", ".delete-rule", function () {
           let tableName = $(this).data("table");
           let chainName = $(this).data("chain");
@@ -945,7 +860,7 @@
             loadListRule(tableName, chainName, false);
           });
         });
-        // 清除所有规则
+        // Flush all rules
         $("#clear-all-rule").click(function () {
           const lang = i18n[currentLang];
           const tableName = currentTableName();
@@ -958,7 +873,7 @@
             }
           );
         });
-        // 清除当前表规则
+        // Flush current table rules
         $("#clear-current-table-rule").click(function () {
           let tableName = currentTableName();
           const lang = i18n[currentLang];
@@ -1020,7 +935,7 @@
                 "{cmd}",
                 currentCommandBinary()
               ),
-              area: ["800px", "350px"], //自定义文本域宽高
+              area: ["800px", "350px"], // Custom textarea width/height
               btn: [lang.confirm, lang.cancel],
             },
             function (value, index, elem) {
@@ -1032,7 +947,7 @@
             }
           );
         });
-        // 清零所有链计数
+        // Zero counters for all chains
         $("#clear-all-metrics").click(function () {
           // let tableName = $(this).parent().data('table');
           // let chainName = $(this).parent().data('chain');
@@ -1041,14 +956,14 @@
             loadListRule(tableName, "", false);
           });
         });
-        // 清零当前表计数
+        // Zero counters for current table
         $("#clear-current-table-metrics").click(function () {
           let tableName = currentTableName();
           iptables.flushMetrics(tableName, "", "", function () {
             loadListRule(tableName, "", false);
           });
         });
-        // 清空自定义空链
+        // Remove empty custom chains
         $("#clear-all-empty-chain").click(function () {
           let tableName = currentTableName();
           iptables.flushEmptyCustomChain(function () {
@@ -1059,7 +974,7 @@
           let tableName = currentTableName();
           const lang = i18n[currentLang];
           execView(
-            lang.execCommandTitle.replace("iptables", currentCommandBinary()),
+            lang.execCommandTitleTpl.replace("{cmd}", currentCommandBinary()),
             currentCommandBinary(),
             lang.inputCommand,
             "",
@@ -1098,10 +1013,7 @@
           window.open("/docs/iptables-command-reference", "_blank");
         });
         $("#language-toggle").click(function () {
-          const nextLang = currentLang === "zh" ? "en" : "zh";
-          setLanguage(nextLang);
-          // reload page
-          location.reload();
+          setLanguage("en");
         });
       });
 
@@ -1215,12 +1127,12 @@
       }
 
       /**
-       * 执行命令的界面
-       * @param title string 页面标题
-       * @param prefix string 输入框命令前缀
-       * @param placeholder string 输入框命令提示
-       * @param val string 输入框命令
-       * @param confirm function 命令完成回调
+      * Command execution dialog
+      * @param title string Dialog title
+      * @param prefix string Command prefix
+      * @param placeholder string Input placeholder
+      * @param val string Input value
+      * @param confirm function Callback on confirm
        */
       function execView(title, prefix, placeholder, val, confirm) {
         const lang = i18n[currentLang];
@@ -1257,8 +1169,8 @@
       }
 
       /**
-       * 将文本内容复制到剪切板
-       * @param str 复制内容
+      * Copy text content to clipboard
+      * @param str Text to copy
        */
       function copyText(jq, str) {
         jq("#copy").text(str).show();

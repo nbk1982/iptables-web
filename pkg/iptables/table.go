@@ -27,15 +27,15 @@ import (
 )
 
 type SystemTitle struct {
-	Chain   string `json:"chain"`   // PREROUTING、INPUT、OUTPUT、POSTROUTING
-	Policy  string `json:"policy"`  // 默认策略：ACCEPT、DROP
-	Packets string `json:"packets"` // 包数量
-	Bytes   string `json:"bytes"`   // 字节数
+	Chain   string `json:"chain"`   // PREROUTING, INPUT, OUTPUT, POSTROUTING
+	Policy  string `json:"policy"`  // Default policy: ACCEPT, DROP
+	Packets string `json:"packets"` // Packet count
+	Bytes   string `json:"bytes"`   // Byte count
 }
 
 type CustomTitle struct {
-	Chain      string `json:"chain"`      // PREROUTING、INPUT、OUTPUT、POSTROUTING
-	References string `json:"references"` // 引用数量
+	Chain      string `json:"chain"`      // PREROUTING, INPUT, OUTPUT, POSTROUTING
+	References string `json:"references"` // Reference count
 }
 
 type Column struct {
