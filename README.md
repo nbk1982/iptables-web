@@ -11,6 +11,7 @@
 - [Installation](#installation)
   - [Docker (recommended)](#docker-recommended)
   - [Binary](#binary)
+- [Releases](#releases)
 - [Configuration](#configuration)
 - [Running & Monitoring](#running--monitoring)
 - [Web UI Guide](#web-ui-guide)
@@ -67,6 +68,30 @@ make release   # requires Go
 ```
 
 Use `nohup`, `systemd`, or `supervisor` to keep it in the background. The default `Makefile` injects build metadata through `-ldflags`.
+
+## Releases
+
+GitHub release artifacts are produced by `.github/workflows/release.yml` when you push a tag matching `v*`.
+
+Create a release tag:
+
+```bash
+git tag v1.1.4
+git push origin v1.1.4
+```
+
+Published assets include:
+
+- `iptables-server-<tag>-linux-amd64`
+- `iptables-server-<tag>-linux-arm64`
+- `iptables-server-<tag>-linux-armv7`
+- `checksums-<tag>.txt`
+
+Verify downloads:
+
+```bash
+sha256sum -c checksums-v1.1.4.txt
+```
 
 ## Configuration
 
