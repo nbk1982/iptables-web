@@ -7,12 +7,13 @@ COMMIT_HASH=$(shell git rev-parse --short HEAD || echo "GitNotFound")
 # git tag
 # VERSION_TAG=$(shell git describe --tags `git rev-list --tags --max-count=1`)
 
-# 编译日期
+# Build date
 BUILD_DATE=$(shell date '+%Y-%m-%d %H:%M:%S')
 
-# 编译条件
+# Build flags
 CFLAGS = -ldflags "-s -w -X \"main.BuildVersion=${COMMIT_HASH}\" -X \"main.BuildDate=$(BUILD_DATE)\""
 # CFLAGS = -ldflags "-s -w -X \"main.BuildDate=$(BUILD_DATE)\""
+
 
 GOPROXY=https://goproxy.cn,direct
 

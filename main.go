@@ -76,7 +76,7 @@ func init() {
 	if v := os.Getenv("IPT_WEB_ADDRESS"); len(v) > 0 {
 		address = v
 	}
-	// 验证表名链名，防止注入
+	// Validate table and chain names to prevent injection
 	verifyArgs, _ = regexp.Compile(`^[0-9A-z-_]+$`)
 }
 
