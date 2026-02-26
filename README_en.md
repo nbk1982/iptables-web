@@ -1,5 +1,5 @@
 # iptables Web Management
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/pretty66/iptables-web)](https://github.com/pretty66/iptables-web/blob/master/go.mod)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/nbk1982/iptables-web)](https://github.com/nbk1982/iptables-web/blob/master/go.mod)
 
 ### iptables-web is a lightweight management console for both `iptables` and `ip6tables`. It bundles a UI, REST API, and utilities into a single binary that fits daily operations as well as learning scenarios.
 
@@ -50,7 +50,7 @@ docker run -d \
   -e IPT_WEB_PASSWORD=admin \
   -e IPT_WEB_ADDRESS=:10001 \
   -p 10001:10001 \
-  pretty66/iptables-web:latest
+  nbk1982/iptables-web:latest
 ```
 
 - `--privileged --net=host` lets the container manipulate the host firewall.
@@ -60,7 +60,7 @@ docker run -d \
 ### Binary
 
 ```bash
-git clone https://github.com/pretty66/iptables-web.git
+git clone https://github.com/nbk1982/iptables-web.git
 cd iptables-web
 make release   # requires Go
 ./iptables-server -a :10001 -u admin -p admin

@@ -34,8 +34,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/pretty66/iptables-web/pkg/iptables"
-	"github.com/pretty66/iptables-web/utils"
+	"github.com/nbk1982/iptables-web/pkg/iptables"
+	"github.com/nbk1982/iptables-web/utils"
 )
 
 //go:embed web/index.html

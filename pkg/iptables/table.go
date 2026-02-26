@@ -23,7 +23,7 @@ import (
 	"fmt"
 	"regexp"
 
-	"github.com/pretty66/iptables-web/utils"
+	"github.com/nbk1982/iptables-web/utils"
 )
 
 type SystemTitle struct {

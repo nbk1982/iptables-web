@@ -24,7 +24,7 @@ run:
 	go run main.go
 
 images:
-	docker build -t pretty66/iptables-web:1.1.2 -t pretty66/iptables-web:latest .
+	docker build -t nbk1982/iptables-web:1.1.2 -t nbk1982/iptables-web:latest .
 # 	docker push
 
 clean:
