@@ -10,8 +10,22 @@ permissions:
 
 jobs:
   build:
-    name: Build binary and publish release
+    name: Build ${{ matrix.suffix }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - goos: linux
+            goarch: amd64
+            suffix: linux-amd64
+          - goos: linux
+            goarch: arm64
+            suffix: linux-arm64
+          - goos: linux
+            goarch: arm
+            goarm: '7'
+            suffix: linux-armv7
 
     steps:
       - name: Checkout source
@@ -22,19 +36,45 @@ jobs:
         with:
           go-version-file: go.mod
 
-      - name: Build binary via Makefile
+      - name: Build binary
+        env:
+          CGO_ENABLED: 0
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+          GOARM: ${{ matrix.goarm }}
         run: |
-          make release
-          mv iptables-server iptables-server-${{ github.ref_name }}-linux-amd64
+          COMMIT_HASH=$(git rev-parse --short HEAD || echo "GitNotFound")
+          BUILD_DATE=$(date '+%Y-%m-%d %H:%M:%S')
+          OUT="iptables-server-${{ github.ref_name }}-${{ matrix.suffix }}"
+          go build -ldflags "-s -w -X 'main.BuildVersion=${COMMIT_HASH}' -X 'main.BuildDate=${BUILD_DATE}'" -o "$OUT" ./
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: iptables-server-${{ github.ref_name }}
-          path: iptables-server-${{ github.ref_name }}-linux-amd64
+          name: iptables-server-${{ matrix.suffix }}
+          path: iptables-server-${{ github.ref_name }}-${{ matrix.suffix }}
+
+  release:
+    name: Publish GitHub Release
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          pattern: iptables-server-*
+          merge-multiple: true
+
+      - name: Generate checksums
+        run: |
+          cd dist
+          sha256sum iptables-server-${{ github.ref_name }}-* > checksums-${{ github.ref_name }}.txt
 
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: iptables-server-${{ github.ref_name }}-linux-amd64
+          files: |
+            dist/iptables-server-${{ github.ref_name }}-*
+            dist/checksums-${{ github.ref_name }}.txt
           generate_release_notes: true

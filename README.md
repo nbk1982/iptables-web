@@ -1,5 +1,5 @@
 # iptables Web Management
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/nbk1982/iptables-web)](https://github.com/nbk1982/iptables-web/blob/master/go.mod)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/nbk1982/iptables-web)](https://github.com/nbk1982/iptables-web/blob/master/go.mod) [![Build Release](https://github.com/nbk1982/iptables-web/actions/workflows/release.yml/badge.svg)](https://github.com/nbk1982/iptables-web/actions/workflows/release.yml)
 
 ### iptables-web is a lightweight management console for both `iptables` and `ip6tables`. It bundles a UI, REST API, and utilities into a single binary that fits daily operations as well as learning scenarios.
 
@@ -11,6 +11,7 @@
 - [Installation](#installation)
   - [Docker (recommended)](#docker-recommended)
   - [Binary](#binary)
+- [Releases](#releases)
 - [Configuration](#configuration)
 - [Running & Monitoring](#running--monitoring)
 - [Web UI Guide](#web-ui-guide)
@@ -67,6 +68,30 @@ make release   # requires Go
 ```
 
 Use `nohup`, `systemd`, or `supervisor` to keep it in the background. The default `Makefile` injects build metadata through `-ldflags`.
+
+## Releases
+
+GitHub release artifacts are produced by `.github/workflows/release.yml` when you push a tag matching `v*`.
+
+Create a release tag:
+
+```bash
+git tag v1.1.4
+git push origin v1.1.4
+```
+
+Published assets include:
+
+- `iptables-server-<tag>-linux-amd64`
+- `iptables-server-<tag>-linux-arm64`
+- `iptables-server-<tag>-linux-armv7`
+- `checksums-<tag>.txt`
+
+Verify downloads:
+
+```bash
+sha256sum -c checksums-v1.1.4.txt
+```
 
 ## Configuration
 
