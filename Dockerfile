@@ -1,4 +1,5 @@
-FROM golang:1.17.8 AS builder
+ARG GO_VERSION=1.26
+FROM golang:${GO_VERSION} AS builder
 WORKDIR /app
 COPY . .
 RUN make

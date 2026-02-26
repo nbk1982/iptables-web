@@ -35,7 +35,7 @@
 | OS | Linux with netfilter/iptables enabled. |
 | Privileges | Root or `CAP_NET_ADMIN`; Docker needs `--privileged --net=host`. |
 | Runtime deps | `iptables`, `iptables-save`, `iptables-restore` (IPv6 counterparts included automatically). |
-| Go toolchain (build only) | Go 1.19+ (follow `go.mod`). |
+| Go toolchain (build only) | Go 1.26+ (follow `go.mod`). |
 
 ## Installation
 
