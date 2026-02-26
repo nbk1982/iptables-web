@@ -15,7 +15,7 @@ CFLAGS = -ldflags "-s -w -X \"main.BuildVersion=${COMMIT_HASH}\" -X \"main.Build
 # CFLAGS = -ldflags "-s -w -X \"main.BuildDate=$(BUILD_DATE)\""
 
 
-GOPROXY=https://goproxy.cn,direct
+# GOPROXY=https://goproxy.cn,direct
 
 release:
 	go build $(CFLAGS) -o $(BIN_FILE) $(SRCS)
